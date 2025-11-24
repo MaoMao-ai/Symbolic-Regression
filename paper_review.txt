@@ -1,0 +1,28 @@
+Deep symbolic regression: Recovering mathematical expressions from data via risk-seeking policy gradients
+
+Contributions:
+1. represent mathematical expressions as sequences
+有一个symbolic expression tree, 就是可以将function 用tree的形式表示
+2. develop an autogressive model to generate expressions under a pre-specified set of constraints
+https://github.com/dso-org/deep-symbolic-optimization 采用RNN方法来自生成function, 用于后面的优化
+3. develop a risk gradient to train the model to generate better-fitting expressions
+特点1. 改变了RL reward 的策略， 不关注于平均优化，而是极端情况优化（domains like neural architecture search and symbolic regression
+are evaluated by the few or single best-performing samples）
+特点2. 方程式的长度是可变的
+
+什么是Interpretable: use a large model (i.e. neural network) to search the space of small models (i.e.
+symbolic expressions). This framework leverages the representational capacity of neural networks to
+generate interpretable expressions, while entirely bypassing the need to interpret the network itself.
+也就是说传统方法结果只给数据，网络来预测出结果，但整个模型是black-box,而这个工作可以给出预测函数，模型就是可以解释的
+
+实验：
+验证 DSR 是否能找到正确的数学表达式（即是否能够准确恢复目标函数）。
+文章提到了一个benchbark: Nguyen, 就是提供不同的表达式，还有一些其他类似的方法（PTQ, VPG, GP, Eureqa, Wolfram）来预测这些表达式，衡量精确度MSE
+
+疑问？
+表达式可以借鉴？
+如何将函数压缩成symbolic expression tree放到vae进行训练？这样vae是不是可以decode出更加复杂的函数？
+我们的方法需要和其他方法来进行对比说明性能吗？如果需要，怎么对比？
+
+LLM-SR 
+目前三种主流的编码方式 1. expression tree 2. prefix sequences 3. context sequences
